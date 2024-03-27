@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Cookies from "js-cookie";
+import {loadDisplayNameEmailInUserState} from "./Login";
 
 
 // Functional component for user registration
@@ -13,7 +14,6 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState('');
-
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -36,8 +36,12 @@ const Register = () => {
             // Store JWT token in a cookie
             Cookies.set('jwtToken', response.data.jwt, { expires: 1 });
 
+            // Fetch user's displayName from db via email and set both of them in redux
+            await loadDisplayNameEmailInUserState(email)
+
             // Redirect to "/conversation" after successful login
             navigate('/conversation');
+
         }
 
 

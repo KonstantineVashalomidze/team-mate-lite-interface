@@ -1,0 +1,33 @@
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-buttons {
+    display: flex;
+}
+
+.navbar-button {
+    margin-right: 10px;
+}
+
+.navbar-search {
+    margin-left: 20px;
+}
+
+/* Responsive CSS for mobile screens */
+@media screen and (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-buttons {
+        margin-top: 10px;
+    }
+
+    .navbar-search {
+        margin: 10px 0;
+    }
+}

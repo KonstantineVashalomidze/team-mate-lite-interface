@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/NavBar';
 
+
 // Individual Team component
 const Team = ({ team, onClick }) => {
   return (
@@ -33,7 +34,6 @@ const Conversation = ({ teams }) => {
     <div>
       <Navbar />
       <div>
-        <h2>Teams</h2>
         <div>
           {teams.map((team) => (
             <Team key={team.id} team={team} onClick={handleTeamClick} />
