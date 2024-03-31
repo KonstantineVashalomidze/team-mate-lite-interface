@@ -1,42 +1,39 @@
 
-const ADD_DISPLAY_NAME = 'ADD_DISPLAY_NAME'
+const SET_USER = 'SET_USER'
 
-export function setDisplayName(displayName){
+export function setUser(data){
     return {
-        type: ADD_DISPLAY_NAME,
-        info: displayName
-    }
-}
-
-
-const ADD_EMAIL = 'ADD_EMAIL'
-
-export function setEmail(email) {
-    return {
-        type: ADD_EMAIL,
-        info: email
+        type: SET_USER,
+        payload: {
+            userId: data.userId,
+            email: data.email,
+            displayName: data.displayName,
+            photoURL: data.photoURL,
+            isInTeams: data.isInTeams
+        }
     }
 }
 
 const initialState = {
-        displayName: '',
+        userId: '',
         email: '',
+        displayName: '',
+        photoURL: '',
+        isInTeams: []
     }
 
 
-export const reducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_DISPLAY_NAME:
+        case SET_USER:
             return {
                 ...state,
-                displayName: action.info
+                userId: action.payload.userId,
+                email: action.payload.email,
+                displayName: action.payload.displayName,
+                photoURL: action.payload.photoURL,
+                isInTeams: action.payload.isInTeams
             }
-        case ADD_EMAIL:
-            return {
-                ...state,
-                email: action.info
-            }
-
         default: return state;
     }
 }

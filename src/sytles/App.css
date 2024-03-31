@@ -1,0 +1,33 @@
+/* App.css */
+
+/* Reset styles */
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f8f9fa;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ensures the app stretches to at least the height of the viewport */
+    width: 100vw;
+}
+
+
+
+
+
+
+
+

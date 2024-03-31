@@ -1,0 +1,11 @@
+/* Base styles for the list container */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Spacing between list items */
+}
+
+/* Styles for list items */
+.list-item {
+    /* Styles from ListItem.css can be included here if needed */
+}

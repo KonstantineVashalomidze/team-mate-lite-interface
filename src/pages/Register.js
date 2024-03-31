@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Cookies from "js-cookie";
-import {loadDisplayNameEmailInUserState} from "./Login";
+import {userStore} from "../redux/store";
+import * as UserState from "../redux/state/UserState";
 
 
 // Functional component for user registration
@@ -20,13 +21,13 @@ const Register = () => {
     e.preventDefault();
     
     try {
-        const response = await axios.post('http://localhost:8080/api/v1/auth/register', {
+        const responseJWT = await axios.post('http://localhost:8080/api/v1/auth/register', {
             displayName,
             email,
             password
         });
 
-        if (response.data.jwt.length === 0)
+        if (responseJWT.data.jwt.length === 0)
         {
             // Email is already present in the database, show error message
             setError('Email is already registered.');
@@ -34,17 +35,15 @@ const Register = () => {
         else
         {
             // Store JWT token in a cookie
-            Cookies.set('jwtToken', response.data.jwt, { expires: 1 });
+            Cookies.set('jwtToken', responseJWT.data.jwt, { expires: 1 });
 
-            // Fetch user's displayName from db via email and set both of them in redux
-            await loadDisplayNameEmailInUserState(email)
+            // Dispatch actions to update Redux store
+            userStore.dispatch(UserState.setUser(responseJWT.data));
 
             // Redirect to "/conversation" after successful login
-            navigate('/conversation');
+            navigate('/main');
 
         }
-
-
 
     } catch (error) {
       // Handle registration error here (e.g., show error message)

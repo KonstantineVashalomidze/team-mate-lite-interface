@@ -1,33 +1,61 @@
+/* Base styles for the navbar */
+nav {
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* Text color */
+    width: 100%; /* Ensuring full width */
+}
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px;
+    width: 100%; /* Ensuring full width */
+    height: 20vh;
 }
 
-.navbar-buttons {
-    display: flex;
+/* Styles for the navbar brand */
+.navbar-brand h2 {
+    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Font family */
+    font-size: 24px; /* Font size */
 }
 
-.navbar-button {
-    margin-right: 10px;
+/* Styles for the navbar buttons */
+.navbar-buttons .navbar-button {
+    padding: 8px 12px; /* Spacing */
+    border: none;
+    border-radius: 4px; /* Button styles */
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transition effect */
+    font-family: 'Roboto', sans-serif; /* Font family */
+    font-size: 16px; /* Font size */
+    margin-right: 8px; /* Spacing */
 }
 
-.navbar-search {
-    margin-left: 20px;
+.navbar-buttons .navbar-button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
 }
 
-/* Responsive CSS for mobile screens */
-@media screen and (max-width: 768px) {
+/* Styles for the logout button */
+.navbar-buttons .navbar-button:last-child {
+    margin-right: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
     .navbar-container {
         flex-direction: column;
-        align-items: flex-start;
     }
 
-    .navbar-buttons {
-        margin-top: 10px;
+    .navbar-buttons .navbar-button {
+        margin-bottom: 8px;
+        margin-right: 0;
     }
 
-    .navbar-search {
-        margin: 10px 0;
+    .navbar-buttons .navbar-button:last-child {
+        margin-bottom: 0;
     }
 }

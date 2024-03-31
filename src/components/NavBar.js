@@ -2,6 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 import '../sytles/NavBar.css'
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Navbar = () => {
     <nav>
       <div className="navbar-container">
         <div className="navbar-brand">
-          <h2>My App</h2>
+          <h2>Team Mate Lite</h2>
         </div>
         <div className="navbar-buttons">
           <button className="navbar-button">Chat</button>
@@ -27,8 +28,7 @@ const Navbar = () => {
           <button className="navbar-button" onClick={logOut}>LogOut</button>
         </div>
         <div className="navbar-search">
-          <input type="text" placeholder="Search..." />
-          <button>Search</button>
+          <SearchBar />
         </div>
       </div>
     </nav>

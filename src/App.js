@@ -2,29 +2,25 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Conversation from './pages/Conversation';
-    // Sample data for teams
-    const teams = [
-      { id: 1, name: 'Team A', description: 'Description for Team A' },
-      { id: 2, name: 'Team B', description: 'Description for Team B' },
-      { id: 3, name: 'Team C', description: 'Description for Team C' }
-    ];
+import Main from "./pages/Main";
+import './sytles/App.css'
+import Navbar from "./components/NavBar";
+
 const App = () => {
 
 
   
   return (
     <Router>
-      <div>
+      <div className="app">
+        <Navbar />
         {/* Main content */}
         <Routes>
           {/* Route for login page */}
           <Route exact path="/login" element={<Login />} />
           {/* Route for register page */}
           <Route exact path="/register" element={<Register />} />
-          {/* Route for conversation page */}
-          <Route exact path="/conversation" element={<Conversation teams={teams} />} />
-
+          <Route exact path="/main" element={<Main/>} />
         </Routes>
       </div>
     </Router>

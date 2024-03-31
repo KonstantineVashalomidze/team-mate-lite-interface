@@ -1,0 +1,89 @@
+/* Base styles for the main container */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: #f8f9fa; /* Background color */
+    overflow: auto; /* Enable scrolling if content exceeds viewport */
+    height: 80vh;
+}
+
+/* Styles for the left container */
+.main-container-left {
+    height: 100%;
+}
+
+/* Styles for the searchbar container */
+.main-container-left-searchbar {
+    height: 10%;
+}
+
+/* Styles for the list container */
+.main-container-left-list {
+    height: 90%; /* Adjust based on other fixed heights */
+    overflow-y: auto; /* Enable vertical scrollbar */
+}
+
+/* Ensure scrollbar is always visible */
+.main-container-left-list::-webkit-scrollbar {
+    width: 8px; /* Adjust scrollbar width as needed */
+}
+
+/* Handle scrollbar track */
+.main-container-left-list::-webkit-scrollbar-track {
+    background: #f8f9fa; /* Background color */
+}
+
+/* Handle scrollbar thumb */
+.main-container-left-list::-webkit-scrollbar-thumb {
+    background: #6c757d; /* Secondary color */
+    border-radius: 4px; /* Rounded corners */
+}
+
+/* Handle scrollbar on hover */
+.main-container-left-list::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker shade on hover */
+}
+
+/* Styles for the middle container */
+.main-container-middle {
+    width: calc(30% - 8px);
+}
+
+/* Styles for the topbar container */
+.main-container-middle-topbar {
+    width: 100%;
+    height: 100px; /* Example height */
+}
+
+/* Styles for the chat container */
+.main-container-middle-chat {
+    width: 100%;
+}
+
+/* Styles for the right container */
+.main-container-right {
+    width: calc(20% - 8px);
+}
+
+/* Styles for the image and name container */
+.main-container-right-imageandname {
+    width: 100%;
+    height: 150px; /* Example height */
+}
+
+/* Styles for the list members container */
+.main-container-right-listmembers {
+    width: 100%;
+}
+
+/* Media query for tablet screens */
+@media (max-width: 768px) {
+
+}
+
+/* Media query for phone screens */
+@media (max-width: 480px) {
+
+}
