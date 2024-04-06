@@ -1,7 +1,10 @@
 
-const SET_USER = 'SET_USER'
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
-export function setUser(data){
+const SET_USER = 'SET_USER';
+
+export function setUser(data) {
     return {
         type: SET_USER,
         payload: {
@@ -11,19 +14,23 @@ export function setUser(data){
             photoURL: data.photoURL,
             isInTeams: data.isInTeams
         }
-    }
+    };
 }
 
 const initialState = {
-        userId: '',
-        email: '',
-        displayName: '',
-        photoURL: '',
-        isInTeams: []
-    }
+    userId: '',
+    email: '',
+    displayName: '',
+    photoURL: '',
+    isInTeams: []
+};
 
+const persistConfig = {
+    key: 'user',
+    storage,
+};
 
-export const userReducer = (state = initialState, action) => {
+export const userReducer = persistReducer(persistConfig, (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
             return {
@@ -33,14 +40,8 @@ export const userReducer = (state = initialState, action) => {
                 displayName: action.payload.displayName,
                 photoURL: action.payload.photoURL,
                 isInTeams: action.payload.isInTeams
-            }
-        default: return state;
+            };
+        default:
+            return state;
     }
-}
-
-
-
-
-
-
-
+});

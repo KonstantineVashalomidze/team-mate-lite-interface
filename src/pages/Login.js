@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {teamStore, userStore} from "../redux/store";
 import * as UserState from "../redux/state/UserState";
+import {useDispatch, useSelector} from "react-redux";
 import * as TeamState from "../redux/state/TeamState";
-import {setTeams} from "../redux/state/TeamState";
 
 
 const Login = () => {
@@ -13,6 +12,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userState = useSelector(state => state.user)
 
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,14 +29,19 @@ const Login = () => {
         Cookies.set('jwtToken', responseJWT.data.jwt, { expires: 1 });
 
         // Dispatch actions to update Redux store
-        userStore.dispatch(UserState.setUser(responseJWT.data));
+        dispatch(UserState.setUser(responseJWT.data));
+
 
         // Fetch teams the user is in
-        const userId = responseJWT.data.isInTeams;
-        const responseTeamsWithId = await axios.get(`http://localhost:8080/api/v1/teams?userId=${userId}`);
-
+        const responseTeamsWithId = await axios.get(`http://localhost:8080/api/v1/teams?userId=${userState.userId}`, {
+            headers: {
+                Authorization: `Bearer ${Cookies.get('jwtToken')}`,
+            }
+        });
         // Dispatch action to update Redux store with teams
-        teamStore.dispatch(setTeams(responseTeamsWithId.data));
+        dispatch(TeamState.setTeams(responseTeamsWithId.data.teams));
+
+
 
         // Redirect to "/conversation" after successful login
         navigate('/main');

@@ -1,9 +1,15 @@
 // eventActions.js
+
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+
+// Action types
 const SET_EVENTS = 'SET_EVENTS';
 const ADD_EVENT = 'ADD_EVENT';
 const UPDATE_EVENT = 'UPDATE_EVENT';
 const DELETE_EVENT = 'DELETE_EVENT';
 
+// Action creators
 export function setEvents(events) {
     return {
         type: SET_EVENTS,
@@ -32,13 +38,18 @@ export function deleteEvent(eventId) {
     };
 }
 
-
+// Initial state
 const initialState = {
     events: [],
 };
 
+const persistConfig = {
+    key: 'events',
+    storage,
+};
 
-export function eventReducer(state = initialState, action) {
+// Reducer
+export const eventReducer = persistReducer(persistConfig, (state = initialState, action) => {
     switch (action.type) {
         case SET_EVENTS:
             return {
@@ -65,4 +76,4 @@ export function eventReducer(state = initialState, action) {
         default:
             return state;
     }
-}
+});

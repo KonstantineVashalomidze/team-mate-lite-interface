@@ -1,11 +1,15 @@
+// messagesState.js
 
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+
+// Action types
 const SET_MESSAGES = 'SET_MESSAGES';
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
 const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
-
-
+// Action creators
 export const setMessages = (messages) => ({
     type: SET_MESSAGES,
     payload: messages,
@@ -26,13 +30,18 @@ export const deleteMessage = (messageId) => ({
     payload: messageId,
 });
 
-
-
+// Initial state
 const initialState = {
-    messages: [],
+    messages: []
 };
 
-export const messagesReducer = (state = initialState, action) => {
+const persistConfig = {
+    key: 'messages',
+    storage,
+};
+
+// Reducer
+export const messagesReducer = persistReducer(persistConfig, (state = initialState, action) => {
     switch (action.type) {
         case SET_MESSAGES:
             return {
@@ -59,4 +68,4 @@ export const messagesReducer = (state = initialState, action) => {
         default:
             return state;
     }
-};
+});

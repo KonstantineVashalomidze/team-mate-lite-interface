@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Cookies from "js-cookie";
-import {userStore} from "../redux/store";
 import * as UserState from "../redux/state/UserState";
+import {useDispatch} from "react-redux";
 
 
 // Functional component for user registration
@@ -15,6 +15,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState('');
+  const dispatch = useDispatch();
+
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -38,7 +40,7 @@ const Register = () => {
             Cookies.set('jwtToken', responseJWT.data.jwt, { expires: 1 });
 
             // Dispatch actions to update Redux store
-            userStore.dispatch(UserState.setUser(responseJWT.data));
+            dispatch(UserState.setUser(responseJWT.data));
 
             // Redirect to "/conversation" after successful login
             navigate('/main');

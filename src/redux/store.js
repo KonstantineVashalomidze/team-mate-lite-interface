@@ -1,16 +1,29 @@
+import { createStore, combineReducers } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import {userReducer} from "./state/UserState";
-import {createStore} from "redux";
 import {teamsReducer} from "./state/TeamState";
-import {messagesReducer} from "./state/MssageState";
 import {eventReducer} from "./state/EventState";
 import {callReducer} from "./state/CallState";
-
-
-export const userStore = createStore(userReducer)
-export const teamStore = createStore(teamsReducer)
-export const messageStore = createStore(messagesReducer)
-export const eventStore = createStore(eventReducer)
-export const callStore = createStore(callReducer)
+import {messagesReducer} from "./state/MssageState"; // defaults to localStorage for web
 
 
 
+const rootReducer = combineReducers({
+    user: userReducer,
+    teams: teamsReducer,
+    messages: messagesReducer,
+    events: eventReducer,
+    calls: callReducer,
+});
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['user', 'teams', 'messages', 'calls'] // Persist user, teams, messages, and calls states
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(persistedReducer);
+export const persistor = persistStore(store);

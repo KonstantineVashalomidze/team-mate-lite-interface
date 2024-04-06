@@ -1,8 +1,13 @@
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+
+// Action types
 const SET_CALLS = 'SET_CALLS';
 const ADD_CALL = 'ADD_CALL';
 const UPDATE_CALL = 'UPDATE_CALL';
 const DELETE_CALL = 'DELETE_CALL';
 
+// Action creators
 export function setCalls(calls) {
     return {
         type: SET_CALLS,
@@ -31,13 +36,18 @@ export function deleteCall(callId) {
     };
 }
 
-
-
+// Initial state
 const initialState = {
     calls: [],
 };
 
-export const callReducer = (state = initialState, action) => {
+const persistConfig = {
+    key: 'calls',
+    storage,
+};
+
+// Reducer
+export const callReducer = persistReducer(persistConfig, (state = initialState, action) => {
     switch (action.type) {
         case SET_CALLS:
             return {
@@ -64,4 +74,4 @@ export const callReducer = (state = initialState, action) => {
         default:
             return state;
     }
-};
+});

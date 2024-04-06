@@ -1,8 +1,9 @@
 // teamsState.js
 
-// Action types
-import axios from "axios";
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
+// Action types
 const SET_TEAMS = 'SET_TEAMS';
 const ADD_TEAM = 'ADD_TEAM';
 const UPDATE_TEAM = 'UPDATE_TEAM';
@@ -29,15 +30,18 @@ export const deleteTeam = (teamId) => ({
     payload: teamId,
 });
 
-
-
 // Initial state
 const initialState = {
-        teams: [],
+    teams: []
+};
+
+const persistConfig = {
+    key: 'teams',
+    storage,
 };
 
 // Reducer
-export const teamsReducer = (state = initialState, action) => {
+export const teamsReducer = persistReducer(persistConfig, (state = initialState, action) => {
     switch (action.type) {
         case SET_TEAMS:
             return {
@@ -64,4 +68,4 @@ export const teamsReducer = (state = initialState, action) => {
         default:
             return state;
     }
-};
+});
