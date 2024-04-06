@@ -7,9 +7,9 @@ const List = ({ data }) => {
         <div className="list">
             {data.map(item => (
                 <ListItem
-                    image={item.image}
-                    displayName={item.displayName}
-                    lastInteraction={item.lastInteraction}
+                    teamPhotoURL={item.teamPhotoURL}
+                    name ={item.name}
+                    lastInteraction={"12 min"}
                 />
             ))}
         </div>

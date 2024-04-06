@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {userStore} from "../redux/store";
+import {teamStore, userStore} from "../redux/store";
 import * as UserState from "../redux/state/UserState";
+import * as TeamState from "../redux/state/TeamState";
+import {setTeams} from "../redux/state/TeamState";
 
 
 const Login = () => {
@@ -27,6 +29,13 @@ const Login = () => {
 
         // Dispatch actions to update Redux store
         userStore.dispatch(UserState.setUser(responseJWT.data));
+
+        // Fetch teams the user is in
+        const userId = responseJWT.data.isInTeams;
+        const responseTeamsWithId = await axios.get(`http://localhost:8080/api/v1/teams?userId=${userId}`);
+
+        // Dispatch action to update Redux store with teams
+        teamStore.dispatch(setTeams(responseTeamsWithId.data));
 
         // Redirect to "/conversation" after successful login
         navigate('/main');

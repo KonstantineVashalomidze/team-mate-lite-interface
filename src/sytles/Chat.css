@@ -1,0 +1,23 @@
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+}
+
+@media (max-width: 480px) {
+    /* Phone styles */
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    /* Tablet styles */
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Laptop styles */
+}
+
+@media (min-width: 1024px) {
+    /* Desktop styles */
+}

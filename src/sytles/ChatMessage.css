@@ -1,0 +1,68 @@
+
+/* Primary Color: #007bff */
+/* Secondary Color: #6c757d */
+/* Background Color: #f8f9fa */
+/* Font Family: 'Roboto', sans-serif */
+/* Font Size: 16px */
+/* Spacing: 8px */
+
+/* Breakpoints */
+/* Phone: 480px */
+/* Tablet: 768px */
+/* Laptop: 1024px */
+
+/* Flexbox/Grid: Flexbox */
+
+.chat-message-container-do-belong {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    max-width: 70%;
+    align-self: flex-end;
+}
+
+.chat-message-container-dont-belong {
+    background-color: #6c757d;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    max-width: 70%;
+    align-self: flex-start;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+}
+
+.sender-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.display-name {
+    font-weight: 700;
+}
+
+.message-content {
+    margin-top: 4px;
+    display: flex; /* Align message and time horizontally */
+    flex-direction: row;
+    justify-content: space-between; /* Add space between message and time */
+}
+
+.message-text {
+    flex: 1; /* Take up remaining space */
+}
+
+.message-time {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
